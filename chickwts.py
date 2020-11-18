@@ -108,3 +108,4 @@ p1_tukey_test = pairwise_tukeyhsd(tuky_chick["weight"], tuky_chick["feed"] )
 f.write("\n\n" + str(p1_tukey_test._results_table))
 
 # %%
+
