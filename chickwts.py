@@ -7,12 +7,16 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
 
 #%%
 import matplotlib.pyplot as plt 
 %matplotlib inline
 from scipy import stats
 from statsmodels.formula.api import ols
+from statsmodels.stats.multicomp import pairwise_tukeyhsd
+from statsmodels.base.model import Model
 
 #%%
 # import the data
@@ -90,5 +94,17 @@ chickwts.groupby('feed')[['weight']].mean()
 
 # %%
 chickwts.groupby(['feed']).agg({'weight':['mean','std']})
+
+#%%
+
+
+# %%
+tuky_chick = pairwise_tukeyhsd(chicken_weights['chickwts'], chicken_weights['feed'])
+print("full tukey")
+print(tuky_chick)
+
+# %%
+p1_tukey_test = pairwise_tukeyhsd(tuky_chick["weight"], tuky_chick["feed"] )
+f.write("\n\n" + str(p1_tukey_test._results_table))
 
 # %%
