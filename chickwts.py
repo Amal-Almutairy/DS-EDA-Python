@@ -67,8 +67,6 @@ results = model.fit()
 # extract coefficients
 results.params.Intercept
 
-#%%
-results.params["group[feed]"]
 
 # %%
 # Explore model results
@@ -94,18 +92,4 @@ chickwts.groupby('feed')[['weight']].mean()
 
 # %%
 chickwts.groupby(['feed']).agg({'weight':['mean','std']})
-
-#%%
-
-
-# %%
-tuky_chick = pairwise_tukeyhsd(chicken_weights['chickwts'], chicken_weights['feed'])
-print("full tukey")
-print(tuky_chick)
-
-# %%
-p1_tukey_test = pairwise_tukeyhsd(tuky_chick["weight"], tuky_chick["feed"] )
-f.write("\n\n" + str(p1_tukey_test._results_table))
-
-# %%
 
