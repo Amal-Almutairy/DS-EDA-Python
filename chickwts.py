@@ -1,4 +1,4 @@
-# Diamonds analysis
+# chickwts analysis
 
 #%%
 # libraries
