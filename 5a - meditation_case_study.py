@@ -1,9 +1,26 @@
 # The Meditation Case Study
 
+#%%
 import pandas as pd
 import numpy as np
 
+
+# %%
+medi = pd.read_table("Expression.csv")
+
+#%%
+# medi
+medi.columns
+
+#%%
 # Examples on getting tidy data
+medi_clean = pd.melt(
+    medi,
+    id_vars=['Control_RIPK2_1'],
+    var_name=['Control_RIPK2_2'],
+    value_name='Meditation_RIPK2_1'
+)
+print(medi_clean) 
 
 
 #%%
@@ -13,6 +30,10 @@ df = pd.DataFrame({
             'treatment_a': [None, 16, 3], 
             'treatment_b': [2, 11, 1]})
 df
+
+#%%
+medi_clean.to_csv('tidy_data_example1-clean.csv')
+
 # %%
 # use melt to get tidy data
 # The id variables stay the same before and after melting
@@ -29,10 +50,6 @@ df_melt_pivot
 
 df_melt_pivot.reset_index()                    
 
-# %%
-medi = pd.read_table("data/Expression.txt")
-# medi
-medi.columns
 
 # %%
 # Add an index column, but it's not necessary
@@ -42,7 +59,7 @@ medi.columns
 
 #%%
 # If we had the index column:
-#medi_melt = pd.melt(medi_index, id_vars='index')
+medi_melt = pd.melt(medi_index, id_vars='index')
 
 # If we don't have an index column, or ID variables: 
 medi_melt = pd.melt(medi)
@@ -60,7 +77,7 @@ medi_melt
 # medi.unstack()
 
 # this just gets treatments:
-# medi_melt['treatment'] = medi_melt['variable'].str.split('_').str.get(0)
+medi_melt['treatment'] = medi_melt['variable'].str.split('_').str.get(0)
 
 
 #%%

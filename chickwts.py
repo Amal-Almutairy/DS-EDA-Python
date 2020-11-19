@@ -92,4 +92,3 @@ chickwts.groupby('feed')[['weight']].mean()
 
 # %%
 chickwts.groupby(['feed']).agg({'weight':['mean','std']})
-
